@@ -2,16 +2,37 @@ import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
+import {
+  Form,
+  FormControl,
+  FormDescription,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
 
 const schema = z.object({
   subject: z.string().min(3, "Enter a short subject"),
-  category: z.enum(["Payments", "Cards", "Security", "Accounts", "Loans", "Investing"]),
+  category: z.enum([
+    "Payments",
+    "Cards",
+    "Security",
+    "Accounts",
+    "Loans",
+    "Investing",
+  ]),
   priority: z.enum(["Low", "Normal", "High"]).default("Normal"),
   email: z.string().email().optional(),
   message: z.string().min(10, "Please describe your issue"),
@@ -26,7 +47,9 @@ export default function TicketForm() {
   const onSubmit = form.handleSubmit((values) => {
     // eslint-disable-next-line no-console
     console.log("SUPPORT_TICKET", values);
-    toast.success("Ticket submitted", { description: "We'll reply via secure messages and email." });
+    toast.success("Ticket submitted", {
+      description: "We'll reply via secure messages and email.",
+    });
     form.reset({ priority: "Normal" } as any);
   });
 
@@ -60,13 +83,25 @@ export default function TicketForm() {
                   <FormItem>
                     <FormLabel>Category</FormLabel>
                     <FormControl>
-                      <Select value={field.value} onValueChange={field.onChange}>
+                      <Select
+                        value={field.value}
+                        onValueChange={field.onChange}
+                      >
                         <SelectTrigger>
                           <SelectValue placeholder="Select" />
                         </SelectTrigger>
                         <SelectContent>
-                          {["Payments","Cards","Security","Accounts","Loans","Investing"].map((c) => (
-                            <SelectItem key={c} value={c}>{c}</SelectItem>
+                          {[
+                            "Payments",
+                            "Cards",
+                            "Security",
+                            "Accounts",
+                            "Loans",
+                            "Investing",
+                          ].map((c) => (
+                            <SelectItem key={c} value={c}>
+                              {c}
+                            </SelectItem>
                           ))}
                         </SelectContent>
                       </Select>
@@ -83,13 +118,18 @@ export default function TicketForm() {
                   <FormItem>
                     <FormLabel>Priority</FormLabel>
                     <FormControl>
-                      <Select value={field.value} onValueChange={field.onChange}>
+                      <Select
+                        value={field.value}
+                        onValueChange={field.onChange}
+                      >
                         <SelectTrigger>
                           <SelectValue placeholder="Select" />
                         </SelectTrigger>
                         <SelectContent>
-                          {["Low","Normal","High"].map((p) => (
-                            <SelectItem key={p} value={p}>{p}</SelectItem>
+                          {["Low", "Normal", "High"].map((p) => (
+                            <SelectItem key={p} value={p}>
+                              {p}
+                            </SelectItem>
                           ))}
                         </SelectContent>
                       </Select>
@@ -106,9 +146,15 @@ export default function TicketForm() {
                   <FormItem>
                     <FormLabel>Contact email</FormLabel>
                     <FormControl>
-                      <Input type="email" placeholder="you@example.com" {...field} />
+                      <Input
+                        type="email"
+                        placeholder="you@example.com"
+                        {...field}
+                      />
                     </FormControl>
-                    <FormDescription>Optional; we also reply in secure messages.</FormDescription>
+                    <FormDescription>
+                      Optional; we also reply in secure messages.
+                    </FormDescription>
                     <FormMessage />
                   </FormItem>
                 )}
@@ -122,7 +168,11 @@ export default function TicketForm() {
                 <FormItem>
                   <FormLabel>Message</FormLabel>
                   <FormControl>
-                    <Textarea rows={5} placeholder="Describe the issue in detail" {...field} />
+                    <Textarea
+                      rows={5}
+                      placeholder="Describe the issue in detail"
+                      {...field}
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -130,8 +180,16 @@ export default function TicketForm() {
             />
 
             <div className="flex justify-end gap-2">
-              <Button type="button" variant="outline" onClick={() => form.reset({ priority: "Normal" } as any)}>Clear</Button>
-              <Button type="submit" className="bg-brand hover:bg-brand/90">Submit</Button>
+              <Button
+                type="button"
+                variant="outline"
+                onClick={() => form.reset({ priority: "Normal" } as any)}
+              >
+                Clear
+              </Button>
+              <Button type="submit" className="bg-brand hover:bg-brand/90">
+                Submit
+              </Button>
             </div>
           </form>
         </Form>

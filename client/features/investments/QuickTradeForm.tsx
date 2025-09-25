@@ -1,7 +1,13 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { useState } from "react";
 import { toast } from "sonner";
 
@@ -23,7 +29,9 @@ export default function QuickTradeForm() {
       toast.error("Select a symbol and quantity");
       return;
     }
-    toast.success("Order placed", { description: `${side.toUpperCase()} ${qty} ${symbol} (market)` });
+    toast.success("Order placed", {
+      description: `${side.toUpperCase()} ${qty} ${symbol} (market)`,
+    });
     setQty(1);
   };
 
@@ -39,7 +47,9 @@ export default function QuickTradeForm() {
           </SelectTrigger>
           <SelectContent>
             {symbols.map((s) => (
-              <SelectItem key={s.sym} value={s.sym}>{s.sym} — {s.name}</SelectItem>
+              <SelectItem key={s.sym} value={s.sym}>
+                {s.sym} — {s.name}
+              </SelectItem>
             ))}
           </SelectContent>
         </Select>
@@ -54,11 +64,21 @@ export default function QuickTradeForm() {
               <SelectItem value="sell">Sell</SelectItem>
             </SelectContent>
           </Select>
-          <Input type="number" min={1} value={qty} onChange={(e) => setQty(Number(e.target.value))} placeholder="Qty" />
+          <Input
+            type="number"
+            min={1}
+            value={qty}
+            onChange={(e) => setQty(Number(e.target.value))}
+            placeholder="Qty"
+          />
         </div>
 
-        <Button onClick={submit} className="bg-brand hover:bg-brand/90">Place order</Button>
-        <p className="text-xs text-muted-foreground">Simulated orders for demo. Connect a broker API to trade live.</p>
+        <Button onClick={submit} className="bg-brand hover:bg-brand/90">
+          Place order
+        </Button>
+        <p className="text-xs text-muted-foreground">
+          Simulated orders for demo. Connect a broker API to trade live.
+        </p>
       </CardContent>
     </Card>
   );

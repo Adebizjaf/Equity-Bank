@@ -3,7 +3,14 @@ import PortfolioChart from "@/features/investments/PortfolioChart";
 import AllocationDonut from "@/features/investments/AllocationDonut";
 import QuickTradeForm from "@/features/investments/QuickTradeForm";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
 
 const positions = [
   { sym: "AAPL", name: "Apple Inc.", qty: 12, price: 212.4, pl: 124.5 },
@@ -18,8 +25,12 @@ export default function Investments() {
       <div className="grid gap-6 lg:grid-cols-3">
         <div className="lg:col-span-2 space-y-6">
           <div>
-            <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">Investments</h1>
-            <p className="mt-2 text-muted-foreground">Portfolio overview, allocation, and quick trading.</p>
+            <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">
+              Investments
+            </h1>
+            <p className="mt-2 text-muted-foreground">
+              Portfolio overview, allocation, and quick trading.
+            </p>
           </div>
           <PortfolioChart />
 
@@ -45,12 +56,24 @@ export default function Investments() {
                     return (
                       <TableRow key={p.sym}>
                         <TableCell className="font-medium">{p.sym}</TableCell>
-                        <TableCell className="text-muted-foreground">{p.name}</TableCell>
+                        <TableCell className="text-muted-foreground">
+                          {p.name}
+                        </TableCell>
                         <TableCell className="text-right">{p.qty}</TableCell>
-                        <TableCell className="text-right">${p.price.toFixed(2)}</TableCell>
-                        <TableCell className="text-right">${value.toFixed(2)}</TableCell>
                         <TableCell className="text-right">
-                          <span className={p.pl >= 0 ? "text-emerald-600 dark:text-emerald-400" : "text-destructive"}>
+                          ${p.price.toFixed(2)}
+                        </TableCell>
+                        <TableCell className="text-right">
+                          ${value.toFixed(2)}
+                        </TableCell>
+                        <TableCell className="text-right">
+                          <span
+                            className={
+                              p.pl >= 0
+                                ? "text-emerald-600 dark:text-emerald-400"
+                                : "text-destructive"
+                            }
+                          >
                             {p.pl >= 0 ? "+" : "-"}${Math.abs(p.pl).toFixed(2)}
                           </span>
                         </TableCell>

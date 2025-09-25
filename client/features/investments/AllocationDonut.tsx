@@ -1,5 +1,9 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { ChartContainer, ChartTooltip, ChartTooltipContent } from "@/components/ui/chart";
+import {
+  ChartContainer,
+  ChartTooltip,
+  ChartTooltipContent,
+} from "@/components/ui/chart";
 import * as Recharts from "recharts";
 
 const allocation = [
@@ -19,7 +23,14 @@ export default function AllocationDonut() {
       <CardContent>
         <ChartContainer className="h-[240px]" config={{}}>
           <Recharts.PieChart>
-            <Recharts.Pie data={allocation} dataKey="value" nameKey="name" innerRadius={60} outerRadius={90} strokeWidth={6}>
+            <Recharts.Pie
+              data={allocation}
+              dataKey="value"
+              nameKey="name"
+              innerRadius={60}
+              outerRadius={90}
+              strokeWidth={6}
+            >
               {allocation.map((a, i) => (
                 <Recharts.Cell key={i} fill={a.fill} />
               ))}
@@ -30,7 +41,10 @@ export default function AllocationDonut() {
         <ul className="mt-4 grid grid-cols-2 gap-2 text-sm text-muted-foreground">
           {allocation.map((a, i) => (
             <li key={i} className="flex items-center gap-2">
-              <span className="h-2 w-2 rounded-sm" style={{ background: a.fill }} />
+              <span
+                className="h-2 w-2 rounded-sm"
+                style={{ background: a.fill }}
+              />
               {a.name} — {a.value}%
             </li>
           ))}
